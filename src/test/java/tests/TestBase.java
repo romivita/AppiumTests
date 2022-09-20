@@ -16,7 +16,7 @@ public class TestBase extends AbstractTestNGCucumberTests {
     public static void Android_setUp() throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("platformName", "Android");
-        caps.setCapability("platformVersion", "11.0");
+        caps.setCapability("platformVersion", " 7.1");
         caps.setCapability("deviceName", "Android Emulator");
         caps.setCapability("app", System.getProperty("user.dir") + "/apps/ToDo.apk");
         driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), caps);
@@ -24,7 +24,7 @@ public class TestBase extends AbstractTestNGCucumberTests {
 
     //A06AD6A3-9237-426E-B7A6-E0DA965ED715
     //567342D8-0E3B-46DB-8660-819013D1F371
-    public static void iOS_setUp(String port, String deviceName, String platformVersion, String udid, String wdaLocalPort) throws MalformedURLException {
+/*    public static void iOS_setUp(String port, String deviceName, String platformVersion, String udid, String wdaLocalPort) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("platformName", "iOS");
         caps.setCapability("platformVersion", platformVersion);
@@ -33,6 +33,18 @@ public class TestBase extends AbstractTestNGCucumberTests {
         caps.setCapability("udid", udid);
         caps.setCapability("wdaLocalPort", wdaLocalPort);
         driver = new IOSDriver(new URL("http://localhost:" + port + "/wd/hub"), caps);
+    }*/
+
+    public void iOS_setUp() throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "iOS");
+        capabilities.setCapability("deviceName", "iPhone X");
+        capabilities.setCapability("automationName","XCUITest");
+        capabilities.setCapability("isHeadless",true);
+        capabilities.setCapability("showXcodeLog",true);
+        capabilities.setCapability("app",
+                System.getProperty("user.dir") + "/apps/DailyCheck.zip");
+        driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
     }
 
     public static void tearDown() {
