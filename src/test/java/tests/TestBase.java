@@ -39,13 +39,13 @@ public class TestBase extends AbstractTestNGCucumberTests {
 
     public void iOS_setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformName", "iOS");
-        capabilities.setCapability("deviceName", "iPhone X");
-        capabilities.setCapability("automationName","XCUITest");
+        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.IOS);
+        capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
         capabilities.setCapability("isHeadless",true);
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"iPhone 13 Pro");
         capabilities.setCapability("showXcodeLog",true);
-        capabilities.setCapability("app",
-                System.getProperty("user.dir") + "/apps/DailyCheck.zip");
+        capabilities.setCapability(MobileCapabilityType.APP,
+                System.getProperty("user.dir")+"/apps/DailyCheck.zip");
         driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
     }
 
