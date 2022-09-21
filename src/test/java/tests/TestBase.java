@@ -3,7 +3,9 @@ package tests;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -15,10 +17,10 @@ public class TestBase extends AbstractTestNGCucumberTests {
 
     public static void Android_setUp() throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability("platformName", "Android");
-        caps.setCapability("platformVersion", " 7.1");
-        caps.setCapability("deviceName", "Android Emulator");
-        caps.setCapability("app", System.getProperty("user.dir") + "/apps/ToDo.apk");
+        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
+        caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UIAutomator2");
+        caps.setCapability("uiautomator2ServerInstallTimeout", 60000);
+        caps.setCapability(MobileCapabilityType.APP,System.getProperty("user.dir")+"/apps/ToDo.apk");
         driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), caps);
     }
 
