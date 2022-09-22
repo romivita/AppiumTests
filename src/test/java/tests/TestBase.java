@@ -42,9 +42,12 @@ public class TestBase extends AbstractTestNGCucumberTests {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.IOS);
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"iPhone 13 Pro");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"iPhone 13");
         capabilities.setCapability("isHeadless",true);
         capabilities.setCapability("showXcodeLog",true);
+        capabilities.setCapability("wdaStartupRetries", "4");
+        capabilities.setCapability("iosInstallPause","8000" );
+        capabilities.setCapability("wdaStartupRetryInterval", "20000");
         capabilities.setCapability(MobileCapabilityType.APP,
                 System.getProperty("user.dir")+"/apps/DailyCheck.zip");
         driver = new IOSDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
